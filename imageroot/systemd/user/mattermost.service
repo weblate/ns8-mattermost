@@ -2,25 +2,26 @@
 # This systemd unit starts a mattermost instance using Podman.
 # Most parts of this file come from podman-generate-systemd.
 #
+
 [Unit]
-Description=mattermost server
+Description=Podman mattermost.service
+Requires=postgres-app.service mattermost-app.service
+Before=postgres-app.service mattermost-app.service
 
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
-EnvironmentFile=%S/state/environment
-WorkingDirectory=%S/state
+EnvironmentFile=-%S/state/environment
 Restart=always
-ExecStartPre=/bin/rm -f %t/mattermost.pid %t/mattermost.ctr-id
-ExecStart=/usr/bin/podman run \
-    --detach \
-    --conmon-pidfile=%t/mattermost.pid \
-    --cidfile=%t/mattermost.ctr-id \
-    --cgroups=no-conmon \
-    --replace --name=%N \
-    --publish=127.0.0.1:${TCP_PORT}:8080 \
-    ${ECHO_SERVER_IMAGE}
-ExecStop=/usr/bin/podman stop --ignore --cidfile %t/mattermost.ctr-id -t 10
-ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/mattermost.ctr-id
+TimeoutStopSec=70
+ExecStartPre=/bin/rm -f %t/mattermost.pid %t/mattermost.pod-id
+ExecStartPre=/usr/bin/podman pod create --infra-conmon-pidfile %t/mattermost.pid \
+    --pod-id-file %t/mattermost.pod-id \
+    --name mattermost \
+    --publish 127.0.0.1:${TCP_PORT}:8065 \
+    --replace
+ExecStart=/usr/bin/podman pod start --pod-id-file %t/mattermost.pod-id
+ExecStop=/usr/bin/podman pod stop --ignore --pod-id-file %t/mattermost.pod-id -t 10
+ExecStopPost=/usr/bin/podman pod rm --ignore -f --pod-id-file %t/mattermost.pod-id
 PIDFile=%t/mattermost.pid
 Type=forking
 
