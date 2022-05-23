@@ -13,7 +13,7 @@ ExecStartPre=/bin/rm -f %t/postgres-app.pid %t/postgres-app.ctr-id
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/postgres-app.pid \
     --cidfile %t/postgres-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/mattermost.pod-id --replace -d --name  postgres-app \
-    --volume data-postgres:/var/lib/postgresql/data:Z \
+    --volume postgres-data:/var/lib/postgresql/data:Z \
     --env POSTGRES_USER=mmuser \
     --env POSTGRES_PASSWORD=mmuser_password \
     --env POSTGRES_DB=mattermost \

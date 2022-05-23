@@ -13,12 +13,11 @@ ExecStartPre=/bin/rm -f %t/mattermost-app.pid %t/mattermost-app.ctr-id
 ExecStart=/usr/bin/podman run --conmon-pidfile %t/mattermost-app.pid \
     --cidfile %t/mattermost-app.ctr-id --cgroups=no-conmon \
     --pod-id-file %t/mattermost.pod-id --replace -d --name  mattermost-app \
-    --volume config-mattermost:/mattermost/config:Z \
-    --volume data-mattermost:/mattermost/data:Z \
-    --volume logs-mattermost:/mattermost/logs:Z \
-    --volume plugins-mattermost:/mattermost/plugins:Z \
-    --volume client-plugins-mattermost:/mattermost/client/plugins:Z \
-    --volume bleve-indexes-mattermost:/mattermost/bleve-indexes:Z \
+    --volume mattermost-config:/mattermost/config:Z \
+    --volume mattermost-data:/mattermost/data:Z \
+    --volume mattermost-plugins:/mattermost/plugins:Z \
+    --volume mattermost-plugins-client:/mattermost/client/plugins:Z \
+    --volume mattermost-bleve-indexes:/mattermost/bleve-indexes:Z \
     --env MM_SQLSETTINGS_DRIVERNAME=postgres \
     --env MM_SQLSETTINGS_DATASOURCE=postgres://mmuser:mmuser_password@127.0.0.1:5432/mattermost?sslmode=disable&connect_timeout=10 \
     --env TZ=UTC \
