@@ -1,19 +1,19 @@
 {
   "name": "mattermost",
   "description": {
-    "en": "My mattermost module"
+    "en": "Mattermost is a secure open source platform for team collaboration."
   },
-  "categories": [],
+  "categories": ["collaboration"],
   "authors": [
     {
-      "name": "Name Surname",
-      "email": "author@yourmail.org"
+      "name": "de Labrusse Stéphane",
+      "email": "stephdl@de-labrusse.fr"
     }
   ],
   "docs": {
     "documentation_url": "https://docs.mattermost.com/",
     "bug_url": "https://github.com/NethServer/dev",
-    "code_url": "https://github.com/author/ns8-mattermost"
+    "code_url": "https://github.com/NethServer/ns8-mattermost"
   },
   "source": "ghcr.io/nethserver/mattermost"
 }

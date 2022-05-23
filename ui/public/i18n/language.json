@@ -1,8 +1,7 @@
 {
   "common": {
     "required": "Required",
-    "work_in_progress": "Work in progress",
-    "processing": "Processing..."
+    "work_in_progress": "Work in progress"
   },
   "status": {
     "title": "Status",
@@ -12,6 +11,9 @@
     "app_volumes": "App volume | App volumes",
     "installation_node": "Installation node",
     "node": "Node",
+    "failed_services": "{num} failed service | {num} failed services",
+    "active_services": "{num} active service | {num} active services",
+    "inactive_services": "{num} inactive service | {num} inactive services",
     "name": "Name",
     "size": "Size",
     "created": "Created",
@@ -22,9 +24,15 @@
   },
   "settings": {
     "title": "Settings",
-    "configure_instance": "Configure {instance}",
+    "mattermost_fqdn": "mattermost FQDN",
     "save": "Save",
-    "test_filed": "Test field"
+    "lets_encrypt": "Let's Encrypt",
+    "http_to_https": "HTTP to HTTPS",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "instance_configuration": "Configure {instance}",
+    "configuring": "Configuring...",
+    "email_format": "Invalid email address"
   },
   "about": {
     "title": "About"
@@ -37,10 +45,7 @@
     "get-configuration": "Get configuration",
     "configure-module": "Configure module",
     "get-module-info": "Get module info",
-    "get-name": "Get name",
-    "list-backup-repositories": "List backup repositories",
-    "list-backups": "List backups",
-    "list-installed-modules": "List installed modules"
+    "get-name": "Get name"
   },
   "error": {
     "error": "Error",
