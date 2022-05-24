@@ -25,6 +25,7 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/mattermost-app.pid \
     ${MATTERMOST_TEAM_EDITION_IMAGE}
 ExecStop=/usr/bin/podman stop --ignore --cidfile %t/mattermost-app.ctr-id -t 10
 ExecReload=/usr/bin/podman kill -s HUP mattermost-app
+SyslogIdentifier=%u
 ExecStopPost=/usr/bin/podman rm --ignore -f --cidfile %t/mattermost-app.ctr-id
 PIDFile=%t/mattermost-app.pid
 Type=forking
