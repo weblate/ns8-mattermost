@@ -20,31 +20,27 @@
 # along with NethServer.  If not, see COPYING.
 #
 
-# Remove traefik route
+# Configure sftpgo and nginx env
+# Input example:
+#
 
 import os
-import sys
 import json
+import sys
+# agent is a NethServer library which provides function to communicate with the agent
 import agent
-import agent.tasks
 
 # Try to parse the stdin as JSON.
 # If parsing fails, output everything to stderr
 data = json.load(sys.stdin)
 
-# Find default traefik instance for current node
-default_traefik_id = agent.resolve_agent_id('traefik@node')
-if default_traefik_id is None:
-    sys.exit(2)
+# Setup default values
+host = data.get("host")
 
-# Remove traefik route
-response = agent.tasks.run(
-    agent_id=default_traefik_id,
-    action='delete-route',
-    data={
-        'instance': os.environ['MODULE_ID']
-    },
-)
+# Talk with agent using file descriptor.
+# Setup configuration from user input.
+agent.set_env("MM_SERVICESETTINGS_SITEURL","https://" + host)
 
-# Check if traefik configuration has been successfull
-agent.assert_exp(response['exit_code'] == 0)
+# Make sure everything is saved inside the environment file
+# just before starting systemd unit
+agent.dump_env()

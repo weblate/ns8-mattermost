@@ -1,21 +1,7 @@
 # ns8-mattermost
 
-This is a template module for [NethServer 8](https://github.com/NethServer/ns8-core).
-To start a new module from it:
-
-1. Click on [Use this template](https://github.com/NethServer/ns8-mattermost/generate).
-   Name your repo with `ns8-` prefix (e.g. `ns8-mymodule`). 
-   Do not end your module name with a number, like ~~`ns8-baaad2`~~!
-
-1. An automated initialization workflow starts: wait for its completion.
-   You can follow the run inside the "Actions" tab, the workflow is named "Initial commit"
-
-1. You can now clone the repository
-
-1. Edit this `README.md` file, by replacing this section with your module
-   description
-
-1. Commit and push your local changes
+Start and configure a mattermost instance.
+The module uses [Mattermost Docker Image for Team Edition](https://hub.docker.com/r/mattermost/mattermost-team-edition).
 
 ## Install
 
@@ -33,22 +19,32 @@ Output example:
 Let's assume that the mattermost instance is named `mattermost1`.
 
 Launch `configure-module`, by setting the following parameters:
-- `<MODULE_PARAM1_NAME>`: <MODULE_PARAM1_DESCRIPTION>
-- `<MODULE_PARAM2_NAME>`: <MODULE_PARAM2_DESCRIPTION>
-- ...
+- `host`: a fully qualified domain name for the application
+- `http2https`: enable or disable HTTP to HTTPS redirection
+- `lets_encrypt`: enable or disable Let's Encrypt certificate
 
 Example:
 
-    api-cli run module/mattermost1/configure-module --data '{}'
+```
+api-cli run configure-module --agent module/mattermost1 --data - <<EOF
+{
+  "host": "mattermost.domain.com",
+  "http2https": true,
+  "lets_encrypt": false
+}
+EOF
+```
 
 The above command will:
 - start and configure the mattermost instance
-- (describe configuration process)
-- ...
+- configure a virtual host for trafik to access the instance
 
-Send a test HTTP request to the mattermost backend service:
+## Get the configuration
+You can retrieve the configuration with
 
-    curl http://127.0.0.1/mattermost/
+```
+api-cli run get-configuration --agent module/mattermost1 --data null | jq
+```
 
 ## Uninstall
 

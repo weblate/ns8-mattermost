@@ -20,28 +20,28 @@
 # along with NethServer.  If not, see COPYING.
 #
 
-import json
+# Configure traefik route for mattermost
+
+import os
 import sys
 import agent
 import agent.tasks
-import os
 
-request = json.load(sys.stdin)
+# Find default traefik instance for current node
+default_traefik_id = agent.resolve_agent_id('traefik@node')
+if default_traefik_id is None:
+    sys.exit(2)
 
-# TODO: do something with the request payload. For example configure a
-# custom route in our web router. Here the path is hardcoded as
-# 'mattermost'.
-
-# Configure Traefik to route "/mattermost" path requests to the mattermost service
+# Configure traefik virtual host
 response = agent.tasks.run(
-    agent_id=agent.resolve_agent_id('traefik@node'),
+    agent_id=default_traefik_id,
     action='set-route',
     data={
         'instance': os.environ['MODULE_ID'],
-        'url':  'http://127.0.0.1:' + os.environ["TCP_PORT"],
-        'http2https': False,
-        'lets_encrypt': False,
-        'path': '/mattermost',
+        'url': f'http://127.0.0.1:{os.environ["TCP_PORT"]}',
+        'host': os.environ["TRAEFIK_HOST"],
+        'lets_encrypt': os.environ["TRAEFIK_LETS_ENCRYPT"] == True,
+        'http2https': os.environ["TRAEFIK_HTTP2HTTPS"] == True
     },
 )
 
