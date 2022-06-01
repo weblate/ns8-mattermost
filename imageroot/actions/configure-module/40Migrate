@@ -38,8 +38,8 @@ chmod a+x restore/zz_stop.sh
 /usr/bin/podman run --rm --replace --name postgres-app --env-file=$HOME/.config/state/environment \
     --volume postgres-data:/var/lib/postgresql/data:Z \
     --volume  $HOME/.config/state/restore/:/docker-entrypoint-initdb.d/:Z \
-    --env POSTGRES_USER=mmuser \
-    --env POSTGRES_PASSWORD=mmuser_password \
+    --env POSTGRES_USER=mattuser \
+    --env POSTGRES_PASSWORD=Nethesis,1234 \
     --env POSTGRES_DB=mattermost \
     --env TZ=UTC \
     ${POSTGRES_IMAGE}
