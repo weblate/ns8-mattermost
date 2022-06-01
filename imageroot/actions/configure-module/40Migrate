@@ -49,6 +49,8 @@ rm -f restore/zz_stop.sh restore/dump.sql
 
 # Start services
 systemctl --user start mattermost
+systemctl --user start mattermost-app
+systemctl --user start postgres-app
 
 # Wait a bit for container initialization
 sleep 5
@@ -65,7 +67,7 @@ done
 sleep 2
 
 # Copy the new config file and make it writable
-podman cp --archive config.json mattermost-config:/mattermost/config/config.json
+podman cp --archive config.json mattermost-app:/mattermost/config/config.json
 podman exec mattermost-app chown -R mattermost:mattermost /mattermost/config/
 
 
