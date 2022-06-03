@@ -49,8 +49,6 @@ rm -f restore/zz_stop.sh restore/dump.sql
 
 # Start services
 systemctl --user start mattermost
-systemctl --user start mattermost-app
-systemctl --user start postgres-app
 
 # Wait a bit for container initialization
 sleep 5
