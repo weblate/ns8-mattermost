@@ -19,7 +19,7 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/mattermost-app.pid \
     --volume mattermost-plugins-client:/mattermost/client/plugins:Z \
     --volume mattermost-bleve-indexes:/mattermost/bleve-indexes:Z \
     --env MM_SQLSETTINGS_DRIVERNAME=postgres \
-    --env MM_SQLSETTINGS_DATASOURCE=postgres://mmuser:mmuser_password@127.0.0.1:5432/mattermost?sslmode=disable&connect_timeout=10 \
+    --env MM_SQLSETTINGS_DATASOURCE=postgres://mattuser:Nethesis,1234@127.0.0.1:5432/mattermost?sslmode=disable&connect_timeout=10 \
     --env TZ=UTC \
     --env MM_SERVICESETTINGS_SITEURL=${MM_SERVICESETTINGS_SITEURL} \
     ${MATTERMOST_TEAM_EDITION_IMAGE}
