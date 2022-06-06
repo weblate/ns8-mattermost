@@ -28,8 +28,8 @@ fi
 # Prepare database initialization
 cat <<EOF > restore/zz_stop.sh
 #!/bin/sh
-
-killall postgres
+# stop the container
+exit 1
 EOF
 chmod a+x restore/zz_stop.sh
 
@@ -51,7 +51,7 @@ rm -f restore/zz_stop.sh restore/dump.sql
 systemctl --user start mattermost
 
 # Wait a bit for container initialization
-sleep 5
+sleep 10
 
 
 # Wait for the container
@@ -62,7 +62,7 @@ do
 done
 
 # Wait a bit for container initialization
-sleep 2
+sleep 5
 
 # Copy the new config file and make it writable
 podman cp --archive config.json mattermost-app:/mattermost/config/config.json
