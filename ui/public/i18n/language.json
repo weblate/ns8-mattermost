@@ -20,7 +20,9 @@
     "mount": "Mount",
     "no_services": "No services",
     "no_images": "No images",
-    "no_volumes": "No volumes"
+    "no_volumes": "No volumes",
+    "open_mattermost_page": "Go to application",
+    "mattermost_url": "Mattermost URL"
   },
   "settings": {
     "title": "Settings",
