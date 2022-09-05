@@ -1,5 +1,17 @@
 *** Settings ***
 Library    SSHLibrary
+Resource    api.resource
+
+*** Keywords ***
+Retry test
+    [Arguments]    ${keyword}
+    Wait Until Keyword Succeeds    20 seconds    1 second    ${keyword}
+
+Backend URL is reachable
+    ${rc} =    Execute Command    curl -f ${backend_url}
+    ...    return_rc=True  return_stdout=False
+    Should Be Equal As Integers    ${rc}  0
+
 
 *** Test Cases ***
 Check if mattermost is installed correctly
@@ -10,14 +22,17 @@ Check if mattermost is installed correctly
     Set Suite Variable    ${module_id}    ${output.module_id}
 
 Check if mattermost can be configured
-    ${rc} =    Execute Command    api-cli run module/${module_id}/configure-module --data '{}'
+    ${rc} =    Execute Command    api-cli run module/${module_id}/configure-module --data '{"host":"mattermost.dp.nethserver.net","http2https":true,"lets_encrypt":true}'
     ...    return_rc=True  return_stdout=False
     Should Be Equal As Integers    ${rc}  0
 
+Retrieve mattermost backend URL
+    # Assuming the test is running on a single node cluster
+    ${response} =    Run task     module/traefik1/get-route    {"instance":"${module_id}"}
+    Set Suite Variable    ${backend_url}    ${response['url']}
+
 Check if mattermost works as expected
-    ${rc} =    Execute Command    curl -f http://127.0.0.1/mattermost/
-    ...    return_rc=True  return_stdout=False
-    Should Be Equal As Integers    ${rc}  0
+    Retry test    Backend URL is reachable
 
 Check if mattermost is removed correctly
     ${rc} =    Execute Command    remove-module --no-preserve ${module_id}
