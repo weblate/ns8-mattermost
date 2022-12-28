@@ -3,7 +3,7 @@
 # Terminate on error
 set -e
 
-MATTERMOST_VERSION=7.5
+MATTERMOST_VERSION=7.5.2
 
 # Prepare variables for later use
 images=()
@@ -18,7 +18,7 @@ container=$(buildah from scratch)
 # Reuse existing nodebuilder-mattermost container, to speed up builds
 if ! buildah containers --format "{{.ContainerName}}" | grep -q nodebuilder-mattermost; then
     echo "Pulling NodeJS runtime..."
-    buildah from --name nodebuilder-mattermost -v "${PWD}:/usr/src:Z" docker.io/library/node:18-slim
+    buildah from --name nodebuilder-mattermost -v "${PWD}:/usr/src:Z" docker.io/node:18.12.1-alpine
 fi
 
 echo "Build static UI files with node..."
@@ -32,7 +32,7 @@ buildah config --entrypoint=/ \
     --label="org.nethserver.authorizations=traefik@node:routeadm" \
     --label="org.nethserver.tcp-ports-demand=1" \
     --label="org.nethserver.rootfull=0" \
-    --label="org.nethserver.images=docker.io/postgres:13-alpine docker.io/mattermost/mattermost-team-edition:$MATTERMOST_VERSION" \
+    --label="org.nethserver.images=docker.io/postgres:13.9-alpine docker.io/mattermost/mattermost-team-edition:$MATTERMOST_VERSION" \
     "${container}"
 # Commit the image
 buildah commit "${container}" "${repobase}/${reponame}"
@@ -51,7 +51,7 @@ images+=("${repobase}/${reponame}")
 #
 
 #
-# Setup CI when pushing to Github. 
+# Setup CI when pushing to Github.
 # Warning! docker::// protocol expects lowercase letters (,,)
 if [[ -n "${CI}" ]]; then
     # Set output value for Github Actions
