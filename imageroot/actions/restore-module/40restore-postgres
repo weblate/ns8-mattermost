@@ -1,0 +1,36 @@
+#!/bin/bash -x
+
+#
+# Copyright (C) 2022 Nethesis S.r.l.
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+# No restoration dump we exit
+if [ ! -f dump.sql ]; then
+    exit 0
+fi
+
+mkdir -vp restore
+mv dump.sql restore
+
+# Prepare database initialization
+cat <<EOF > restore/zz_stop.sh
+#!/bin/sh
+# stop the container
+exit 1
+EOF
+chmod a+x restore/zz_stop.sh
+
+# Execute database restore
+# The cointainer will be stopped at the end
+/usr/bin/podman run --rm --replace --name postgres-app \
+    --volume postgres-data:/var/lib/postgresql/data:Z \
+    --volume ./restore:/docker-entrypoint-initdb.d/:Z \
+    --env POSTGRES_USER=mattuser \
+    --env POSTGRES_PASSWORD=Nethesis,1234 \
+    --env POSTGRES_DB=mattermost \
+    --env TZ=UTC \
+    ${POSTGRES_IMAGE}
+
+# Cleanup database data
+rm -f restore/zz_stop.sh restore/dump.sql
