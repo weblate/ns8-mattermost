@@ -7,7 +7,5 @@
 
 set -e
 
-# test 
-if systemctl --user -q is-active postgres-app; then
-    podman exec postgres-app pg_dump -U mattuser  mattermost > dump.sql
-fi
+echo "Dumping mattermost postgres database"
+podman exec postgres-app pg_dump -U mattuser --format=c  mattermost > dump.sql
