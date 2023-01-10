@@ -5,27 +5,33 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
+set -e -o pipefail
+exec 1>&2 # Redirect any output to the journal (stderr)
+
 mkdir -vp restore
-mv dump.sql restore
+cat - >restore/mattermost_restore.sh <<'EOS'
+# Read dump file from standard input:
+pg_restore --no-owner --no-privileges -U mattuser -d mattermost
+ec=$?
+docker_temp_server_stop
+exit $ec
+EOS
 
-# Prepare database initialization
-cat <<EOF > restore/zz_stop.sh
-#!/bin/sh
-# stop the container
-exit 1
-EOF
-chmod a+x restore/zz_stop.sh
+# Override the image /docker-entrypoint-initdb.d contents, to restore the
+# DB dump file. The container will be stopped at the end
 
-# Execute database restore
-# The cointainer will be stopped at the end
-/usr/bin/podman run --rm --replace --name postgres-app \
-    --volume postgres-data:/var/lib/postgresql/data:Z \
-    --volume ./restore:/docker-entrypoint-initdb.d/:Z \
+podman run \
+    --rm \
+    --interactive \
+    --network=none \
+    --volume=./restore:/docker-entrypoint-initdb.d/:Z \
+    --volume=postgres-data:/var/lib/postgresql/data:Z \
+    --replace --name=restore_db \
     --env POSTGRES_USER=mattuser \
     --env POSTGRES_PASSWORD=Nethesis,1234 \
     --env POSTGRES_DB=mattermost \
     --env TZ=UTC \
-    ${POSTGRES_IMAGE}
+    "${POSTGRES_IMAGE}" < dump.sql
 
-# Cleanup database data
-rm -rfv restore/
+# If the restore is successful, clean up:
+rm -rfv restore/ dump.sql
