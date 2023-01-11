@@ -5,4 +5,4 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
-rm -vf dump.sql
+rm -vf mattermost.pg_dump

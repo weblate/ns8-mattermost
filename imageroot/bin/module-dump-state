@@ -8,4 +8,4 @@
 set -e
 
 echo "Dumping mattermost postgres database"
-podman exec postgres-app pg_dump -U mattuser --format=c  mattermost > dump.sql
+podman exec postgres-app pg_dump -U mattuser --format=c  mattermost > mattermost.pg_dump

@@ -31,7 +31,7 @@ podman run \
     --env POSTGRES_PASSWORD=Nethesis,1234 \
     --env POSTGRES_DB=mattermost \
     --env TZ=UTC \
-    "${POSTGRES_IMAGE}" < dump.sql
+    "${POSTGRES_IMAGE}" < mattermost.pg_dump
 
 # If the restore is successful, clean up:
-rm -rfv restore/ dump.sql
+rm -rfv restore/ mattermost.pg_dump
