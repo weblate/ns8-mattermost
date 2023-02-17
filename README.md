@@ -40,10 +40,18 @@ The above command will:
 - configure a virtual host for trafik to access the instance
 
 ## Get the configuration
+
 You can retrieve the configuration with
 
 ```
 api-cli run get-configuration --agent module/mattermost1 --data null | jq
+```
+
+## Access the database
+
+You can access the database of a running instance using this command:
+```
+podman exec -ti postgres-app psql -U mattuser
 ```
 
 ## Uninstall
