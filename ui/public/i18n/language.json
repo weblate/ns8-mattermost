@@ -26,7 +26,7 @@
   },
   "settings": {
     "title": "Settings",
-    "mattermost_fqdn": "mattermost FQDN",
+    "mattermost_fqdn": "Mattermost FQDN",
     "save": "Save",
     "lets_encrypt": "Let's Encrypt",
     "http_to_https": "HTTP to HTTPS",
