@@ -3,6 +3,11 @@
 Start and configure a mattermost instance.
 The module uses [Mattermost Docker Image for Team Edition](https://hub.docker.com/r/mattermost/mattermost-team-edition).
 
+##Documentation
+The documenation is available at https://docs.mattermost.com/
+
+You could configure the settings by  [Environment variables](https://docs.mattermost.com/configure/environment-configuration-settings.html), the container must be restarted once the Env vars has been changed
+
 ## Install
 
 Instantiate the module with:
@@ -53,6 +58,11 @@ You can access the database of a running instance using this command:
 ```
 podman exec -ti postgres-app psql -U mattuser
 ```
+
+## Smarthost discovery
+
+Mattermost registers to the event smarthost-changed, each time you enable or disable the smarthost settings in the node, you restart mattermost.
+Before to start the containers we trigger the script discover-smarthost to find and write to an environment file `smarthost.env` the settings of the smarthost and enable the email notification.
 
 ## Uninstall
 
