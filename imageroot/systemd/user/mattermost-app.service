@@ -6,7 +6,6 @@ After=postgres-app.service
 [Service]
 Environment=PODMAN_SYSTEMD_UNIT=%n
 EnvironmentFile=%S/state/environment
-EnvironmentFile=-%S/state/smarthost.env
 ExecStartPre=runagent discover-smarthost
 WorkingDirectory=%S/state
 Restart=always
@@ -23,7 +22,7 @@ ExecStart=/usr/bin/podman run --conmon-pidfile %t/mattermost-app.pid \
     --env MM_SQLSETTINGS_DRIVERNAME=postgres \
     --env MM_SQLSETTINGS_DATASOURCE=postgres://mattuser:Nethesis,1234@127.0.0.1:5432/mattermost?sslmode=disable&connect_timeout=10 \
     --env TZ=UTC \
-    --env=MM_* \
+    --env-file=%S/state/smarthost.env \
     --env MM_SERVICESETTINGS_SITEURL=${MM_SERVICESETTINGS_SITEURL} \
     --env MM_SERVICESETTINGS_LISTENADDRESS=${MM_SERVICESETTINGS_LISTENADDRESS} \
     --env MM_FILESETTINGS_DIRECTORY=${MM_FILESETTINGS_DIRECTORY} \

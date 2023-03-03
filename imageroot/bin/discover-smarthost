@@ -17,12 +17,11 @@ smtp_settings = agent.get_smarthost_settings(rdb)
 
 envfile = "smarthost.env"
 
-# Do not write the env file if smarthost is not configured
+# Write the blank env file if smarthost is not configured
 if not smtp_settings['host']:
-    try:
-        os.unlink(envfile)
-    except:
-        pass
+    f = open(envfile, "w")
+    f.write("")
+    f.close
     sys.exit(0)
 
 # Using .tmp suffix: do not overwrite the target file until the new one is
