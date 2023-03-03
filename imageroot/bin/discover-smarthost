@@ -28,7 +28,6 @@ if not smtp_settings['host']:
 # Using .tmp suffix: do not overwrite the target file until the new one is
 # saved to disk:
 with open(envfile + ".tmp", "w") as efp:
-    # TODO: adjust variable names as wanted
     print(f"MM_EMAILSETTINGS_SENDEMAILNOTIFICATIONS={'true' if smtp_settings['enabled'] else 'false'}", file=efp)
     print(f"MM_EMAILSETTINGS_SMTPSERVER={smtp_settings['host']}", file=efp)
     print(f"MM_EMAILSETTINGS_SMTPPORT={smtp_settings['port']}", file=efp)
@@ -43,7 +42,3 @@ with open(envfile + ".tmp", "w") as efp:
 
 # Commit changes by replacing the existing envfile:
 os.replace(envfile + ".tmp", envfile)
-
-# NOTE: The generated envfile can be included in the service container
-#       with `podman run --env-file` or in Systemd unit with
-#       `Environment=-%S/state/smarthost.env`
