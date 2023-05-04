@@ -1,7 +1,8 @@
 {
   "name": "mattermost",
   "description": {
-    "en": "Mattermost is a secure open source platform for team collaboration."
+    "en": "Mattermost is a secure Open Source chat for team collaboration.",
+    "it": "Mattermost è una chat Open Source sicura per la collaborazione in team."
   },
   "categories": ["collaboration"],
   "authors": [
