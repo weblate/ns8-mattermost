@@ -1,7 +1,16 @@
 {
     "settings": {
         "title": "Impostazioni",
-        "save": "Salva"
+        "save": "Salva",
+        "enabled": "Abilitato",
+        "instance_configuration": "Configura {instance}",
+        "lets_encrypt": "Let's Encrypt",
+        "http_to_https": "Da HTTP a HTTPS",
+        "configuring": "Configurazione...",
+        "domain_already_used_in_traefik": "Questo dominio è già utilizzato in traefik",
+        "mattermost_fqdn": "FQDN Mattermost",
+        "disabled": "Disabilitato",
+        "email_format": "Indirizzo e-mail non valido"
     },
     "common": {
         "required": "Obbligatorio",
@@ -21,7 +30,12 @@
         "app_instance": "Istanza app",
         "app_volumes": "Volume app|Volumi app",
         "installation_node": "Nodo",
-        "mount": "Percorso di mount"
+        "mount": "Percorso di mount",
+        "failed_services": "{num} servizio fallito | {num} servizi falliti",
+        "open_mattermost_page": "Vai all'applicazione",
+        "mattermost_url": "URL Mattermost",
+        "active_services": "{num} servizio attivo | {num} servizi attivi",
+        "inactive_services": "{num} servizio inattivo | {num} servizi inattivi"
     },
     "error": {
         "error": "Errore",
