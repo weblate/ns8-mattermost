@@ -3,7 +3,8 @@
 Start and configure a mattermost instance.
 The module uses [Mattermost Docker Image for Team Edition](https://hub.docker.com/r/mattermost/mattermost-team-edition).
 
-##Documentation
+## Documentation
+
 The documenation is available at https://docs.mattermost.com/
 
 You could configure the settings by  [Environment variables](https://docs.mattermost.com/configure/environment-configuration-settings.html), the container must be restarted once the Env vars has been changed
