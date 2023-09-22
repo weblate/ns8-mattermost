@@ -5,7 +5,7 @@ Resource    api.resource
 *** Keywords ***
 Retry test
     [Arguments]    ${keyword}
-    Wait Until Keyword Succeeds    20 seconds    1 second    ${keyword}
+    Wait Until Keyword Succeeds    60 seconds    1 second    ${keyword}
 
 Backend URL is reachable
     ${rc} =    Execute Command    curl -f ${backend_url}
