@@ -5,6 +5,11 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 
+if [ -z ${CALLS_TCP_PORT} ] || [ -z ${CALLS_UDP_PORT} ]; then
+    print "Port numbers for Calls plugin are not set. Calls might not work!" 1>&2
+    exit 0
+fi
+
 # Set on the fly the calls settings
 
 # we need to wait socket is up, we are limited by the timeout of mattermost-app.service
