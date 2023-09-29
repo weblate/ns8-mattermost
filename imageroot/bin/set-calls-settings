@@ -22,6 +22,17 @@ do
     sleep 1
 done
 
-printf '{"PluginSettings": {"Plugins": {"com.mattermost.calls": {"icehostoverride": "%s","tcpserverport": %d,"udpserverport": %d}}}}\n' "${TRAEFIK_HOST}" ${CALLS_TCP_PORT} ${CALLS_UDP_PORT} | mmctl --local config patch /dev/stdin
+printf '{
+    "PluginSettings": {
+        "Plugins": {
+            "com.mattermost.calls": {
+                "icehostoverride": "%s",
+                "tcpserverport": %d,
+                "udpserverport": %d,
+                "defaultenabled": true
+            }
+        }
+    }
+}\n' "${TRAEFIK_HOST}" ${CALLS_TCP_PORT} ${CALLS_UDP_PORT} | mmctl --local config patch /dev/stdin
 mmctl --local config reload
 EOF
