@@ -1,40 +1,40 @@
 {
     "error": {
         "403": "Operation not authorized",
-        "cannot_retrieve_installed_modules": "No es posible recibir los módulos instalados",
-        "401": "Autenticación no válida",
-        "cannot_retrieve_module_info": "No es posible recibir la información del módulo",
+        "cannot_retrieve_installed_modules": "No se pueden recuperar los módulos instalados",
+        "401": "Autentificación inválida",
+        "cannot_retrieve_module_info": "No se puede recuperar la información del módulo",
         "generic_error": "Algo ha salido mal",
         "error": "Error",
-        "network_timeout": "Tiempo de espera de red agotado",
+        "network_timeout": "Tiempo de espera en la red",
         "404": "Recurso no encontrado",
-        "network_error": "Error de red",
-        "validation_error": "Error de validación"
+        "network_error": "Error en la red",
+        "validation_error": "Error en la validación"
     },
     "common": {
-        "required": "Requerido",
-        "work_in_progress": "Trabajo en progreso"
+        "required": "Obligatorio",
+        "work_in_progress": "Trabajo en curso"
     },
     "status": {
         "created": "Creado",
         "size": "Tamaño",
         "name": "Nombre",
-        "no_images": "No hay imágenes",
-        "app_volumes": "Volúmen de App | Volúmenes de App",
+        "no_images": "Sin imágenes",
+        "app_volumes": "Volúmen de aplicación | Volúmenes de aplicaciones",
         "services": "Servicio | Servicios",
-        "app_images": "Imagen de App | Imágenes de App",
+        "app_images": "Imagen de la aplicación | Imágenes de la aplicación",
         "failed_services": "{num} servicio fallido | {num} servicios fallidos",
         "mattermost_url": "URL Mattermost",
         "open_mattermost_page": "Ir a la aplicación",
         "active_services": "{num} servicio activo | {num} servicios activos",
-        "no_services": "No hay servicios",
+        "no_services": "Sin servicios",
         "inactive_services": "{num} servicio inactivo | {num} servicios inactivos",
-        "app_instance": "Instancia de aplicación",
+        "app_instance": "Instancia de la aplicación",
         "mount": "Montar",
         "title": "Estado",
         "installation_node": "Nodo de instalación",
         "node": "Nodo",
-        "no_volumes": "No hay volúmenes"
+        "no_volumes": "Sin volúmenes"
     },
     "settings": {
         "configuring": "Configurando...",
@@ -54,10 +54,10 @@
     },
     "action": {
         "get-module-info": "Obtener información del módulo",
-        "get-status": "Obtener estado",
-        "configure-module": "Configurar módulo",
+        "get-status": "Obtener el estado",
+        "configure-module": "Configurar el módulo",
         "get-configuration": "Obtener la configuración",
-        "get-name": "Obtener nombre"
+        "get-name": "Obtener el nombre"
     },
     "task": {
         "cannot_create_task": "No se puede crear la tarea {action}"
