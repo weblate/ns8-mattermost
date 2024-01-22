@@ -30,14 +30,14 @@ with open(envfile + ".tmp", "w") as efp:
     print(f"MM_EMAILSETTINGS_SENDEMAILNOTIFICATIONS={'true' if smtp_settings['enabled'] else 'false'}", file=efp)
     print(f"MM_EMAILSETTINGS_SMTPSERVER={smtp_settings['host']}", file=efp)
     print(f"MM_EMAILSETTINGS_SMTPPORT={smtp_settings['port']}", file=efp)
-    print(f"MM_EMAILSETTINGS_ENABLESMTPAUTH=true", file=efp)
+    print(f"MM_EMAILSETTINGS_ENABLESMTPAUTH={'true' if smtp_settings['username'] else 'false'}", file=efp)
     print(f"MM_EMAILSETTINGS_SMTPUSERNAME={smtp_settings['username']}", file=efp)
     print(f"MM_EMAILSETTINGS_SMTPPASSWORD={smtp_settings['password']}", file=efp)
     if smtp_settings['encrypt_smtp'] == 'tls':
         print(f"MM_EMAILSETTINGS_CONNECTIONSECURITY=TLS", file=efp)
     elif smtp_settings['encrypt_smtp'] == 'starttls':
         print(f"MM_EMAILSETTINGS_CONNECTIONSECURITY=STARTTLS", file=efp)
-    print(f"MM_EMAILSETTINGS_SKIPSERVERCERTIFICATEVERIFICATION={'true' if smtp_settings['tls_verify'] else 'false'}", file=efp)
+    print(f"MM_EMAILSETTINGS_SKIPSERVERCERTIFICATEVERIFICATION={'false' if smtp_settings['tls_verify'] else 'true'}", file=efp)
 
 # Commit changes by replacing the existing envfile:
 os.replace(envfile + ".tmp", envfile)
