@@ -29,7 +29,7 @@
         "app_images": "Immagine app|Immagini app",
         "app_instance": "Istanza app",
         "app_volumes": "Volume app|Volumi app",
-        "installation_node": "Nodo",
+        "installation_node": "Nodo di installazione",
         "mount": "Percorso di mount",
         "failed_services": "{num} servizio fallito | {num} servizi falliti",
         "open_mattermost_page": "Vai all'applicazione",
