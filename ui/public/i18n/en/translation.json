@@ -35,7 +35,8 @@
     "instance_configuration": "Configure {instance}",
     "configuring": "Configuring...",
     "email_format": "Invalid email address",
-    "domain_already_used_in_traefik":"This domain is already used in traefik"
+    "domain_already_used_in_traefik":"This domain is already used in traefik",
+    "host_pattern": "must be a valid fully qualified domain name"
   },
   "about": {
     "title": "About"
