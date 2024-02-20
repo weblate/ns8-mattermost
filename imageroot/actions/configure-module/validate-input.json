@@ -20,7 +20,8 @@
         "host": {
             "type": "string",
             "description": "Host name for the application, like 'mattermost.nethserver.org'",
-            "format": "idn-hostname"
+            "format": "idn-hostname",
+            "pattern": "\\."
         },
         "lets_encrypt": {
             "type": "boolean",
