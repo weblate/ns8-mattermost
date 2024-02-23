@@ -1,1 +1,59 @@
-{}
+{
+    "task": {
+        "cannot_create_task": "Aufgabe {action} kann nicht erstellt werden"
+    },
+    "common": {
+        "required": "Erforderlich",
+        "work_in_progress": "in Arbeit"
+    },
+    "settings": {
+        "title": "Einstellungen",
+        "host_pattern": "Voll-qualifizierter Domänen-Name (FQDN) erforderlich",
+        "host_format": "Voll-qualifizierter Domänen-Name (FQDN) erforderlich",
+        "save": "Speichern",
+        "lets_encrypt": "Let's Encrypt",
+        "http_to_https": "HTTP zu HTTPS",
+        "disabled": "Deaktiviert",
+        "enabled": "Aktiviert",
+        "configuring": "Konfiguriere...",
+        "instance_configuration": "{instance} konfigurieren"
+    },
+    "status": {
+        "title": "Status",
+        "app_volumes": "App Volumen | App Volumen",
+        "installation_node": "Installations-Knoten",
+        "node": "Knoten",
+        "name": "Name",
+        "size": "Größe",
+        "created": "Erstellt",
+        "mount": "Einhängepunkt",
+        "no_services": "Keine Dienste",
+        "app_instance": "App-Instanz",
+        "services": "Dienst | Dienste",
+        "app_images": "App Abbild | App Abbilder",
+        "no_volumes": "Keine Volumen",
+        "no_images": "Keine Abbilder"
+    },
+    "error": {
+        "error": "Fehler",
+        "401": "Ungültige Authentifizierung",
+        "network_timeout": "Netzwerk-Zeitüberschreitung",
+        "network_error": "Netzwerk-Fehler",
+        "403": "Operation nicht genehmigt",
+        "404": "Ressource nicht gefunden",
+        "generic_error": "Etwas ist schief gegangen",
+        "validation_error": "Überprüfungsfehler",
+        "cannot_retrieve_module_info": "Modul-Info kann nicht abgerufen werden",
+        "cannot_retrieve_installed_modules": "Installierte Module können nicht abgerufen werden"
+    },
+    "action": {
+        "get-module-info": "Modul-Info abrufen",
+        "get-name": "Namen abrufen",
+        "get-status": "Status abrufen",
+        "get-configuration": "Konfiguration abrufen",
+        "configure-module": "Modul konfigurieren"
+    },
+    "about": {
+        "title": "Über"
+    }
+}
