@@ -16,7 +16,10 @@
         "disabled": "Deaktiviert",
         "enabled": "Aktiviert",
         "configuring": "Konfiguriere...",
-        "instance_configuration": "{instance} konfigurieren"
+        "instance_configuration": "{instance} konfigurieren",
+        "mattermost_fqdn": "Mattermost-FQDN",
+        "email_format": "E-Mail Adresse fehlerhaft",
+        "domain_already_used_in_traefik": "Diese Domäne wird in Traefik bereits verwendet"
     },
     "status": {
         "title": "Status",
@@ -32,7 +35,12 @@
         "services": "Dienst | Dienste",
         "app_images": "App Abbild | App Abbilder",
         "no_volumes": "Keine Volumen",
-        "no_images": "Keine Abbilder"
+        "no_images": "Keine Abbilder",
+        "failed_services": "{num} Dienst fehlerhaft | {num} Dienste fehlerhaft",
+        "active_services": "{num} aktiver Dienst | {num} aktive Dienste",
+        "inactive_services": "{num} inaktiver Dienst | {num} inaktive Dienste",
+        "open_mattermost_page": "zur Anwendung wechseln",
+        "mattermost_url": "Mattermost-URL"
     },
     "error": {
         "error": "Fehler",
