@@ -47,7 +47,9 @@
         "save": "Guardar",
         "enabled": "Habilitado",
         "domain_already_used_in_traefik": "Este dominio ya está utilizado en traefik",
-        "title": "Ajustes"
+        "title": "Ajustes",
+        "host_pattern": "Debe ser un nombre de dominio válido y completo",
+        "host_format": "Debe ser un nombre de dominio válido y completo"
     },
     "about": {
         "title": "Acerca de"
